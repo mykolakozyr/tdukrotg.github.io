@@ -265,6 +265,22 @@ var otg_layer = L.geoJson(otg, {
     pane: 'search_pane',
 }).addTo(map);
 
+// LAYER FOR OTG ASSOCIATION
+var geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+};
+
+L.geoJSON(otg_association, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+}).addTo(map);
+
 // ZOOM DEPENDANT STYLE
 map.on('zoomend', function(e) {
     map.getZoom()
