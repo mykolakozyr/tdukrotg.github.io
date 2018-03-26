@@ -266,19 +266,17 @@ var otg_layer = L.geoJson(otg, {
 }).addTo(map);
 
 // LAYER FOR OTG ASSOCIATION
-var geojsonMarkerOptions = {
-    radius: 8,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-};
+ var otg_association_style = L.icon({
+    iconUrl: 'data/house-2374925.svg',
+    iconSize: [28, 28],
+    iconAnchor: [0,0]
+});
 
-L.geoJSON(otg_association, {
+var otg_association = L.geoJSON(otg_association, {
     pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, geojsonMarkerOptions);
-    }
+        return L.marker(latlng, {icon: otg_association_style, interactive: false});
+    },
+    pane: 'labels_pane',
 }).addTo(map);
 
 // ZOOM DEPENDANT STYLE
@@ -407,6 +405,9 @@ var groupedOverlays= {
         "<div id='sq16'></div> 2016": otgLayer_2016,
         "<div id='sq17'></div> 2017": otgLayer_2017,
     },
+    "": {
+        "Члени асоціації ОТГ": otg_association,
+    }
 };
 var options = {
     //exclusiveGroups: ["otg"],
